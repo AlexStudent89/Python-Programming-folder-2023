@@ -1,0 +1,100 @@
+# Comment like a pro.
+
+import FormatValues as FV
+
+Total = 0
+Nums = []
+while True:
+    Number = int(input("Enter a number (-1 to end): "))
+    if Number == -1:
+        break
+    Nums.append(Number)
+    Total += Number
+
+print(Total)
+print(Nums)
+
+Nums.sort()  # Can I sort in Descending order??
+print(Nums)
+
+# Sorting in Descending order
+Nums.sort(reverse=True)
+print(Nums)
+
+# Alternative to the .sort() method is the sorted() function.
+# Allows you to place the result in a new variable..
+SortedNums = sorted(Nums)
+print(SortedNums)
+SortedNumsDesc = sorted(Nums, reverse=True)
+print(SortedNumsDesc)
+
+Total2 = sum(Nums)
+print(Total2)
+
+FName = "Maurice"
+StLen = len(FName)
+print(StLen)
+LstLen = len(Nums)
+print(LstLen)
+
+Average = Total2 / len(Nums)
+print(Average)
+
+MaxValue = max(Nums)
+print(MaxValue)
+MinValue = min(Nums)
+print(MinValue)
+
+Dups = []
+for i in range(0, MaxValue + 1):
+    CountOcc = Nums.count(i)
+    if CountOcc >= 2:
+        Dups.append(i)
+print(Dups)
+
+
+QuizTitle = input("Enter a title for this quiz: ")
+NumQuestions = int(input("Enter the number of questions: "))
+
+# Set up the answer key and store the answers in a list.
+AnsKey = []
+for i in range(1, NumQuestions + 1):
+    Answer = input("Enter the answer for question " + str(i) + ": ").upper()
+    AnsKey.append(Answer)
+
+# Process each students quiz and store results in lists.
+StudNameLst = []
+NumCorrectLst= []
+GradeLst = []
+
+NumQuizzes = int(input("How many quizzes are to be graded: "))
+for j in range(1, NumQuizzes + 1):
+    StudentName = input("Enter the student name: ")
+    StudentAnswer = []
+    for i in range(1, NumQuestions + 1):
+        Answer = input("Enter the answer for question " + str(i) + ": ").upper()
+        StudentAnswer.append(Answer)
+
+    # Compare the student answers to the Answer Key.
+    # Keep track of the number the get correct.
+    NumCorrect = 0
+    for i in range(0, NumQuestions):
+        if StudentAnswer[i] == AnsKey[i]:
+            NumCorrect += 1
+
+    # Calculate the grade.
+    Grade = (NumCorrect / NumQuestions) * 100
+
+    # Store the name, Number Correct and The Grade in three lists.
+    # Note that the lists are initialized before this loop.
+    StudNameLst.append(StudentName)
+    NumCorrectLst.append(NumCorrect)
+    GradeLst.append(Grade)
+
+# Display the output based on the printer spacing chart provided.
+print(f"   Quiz: {QuizTitle}")
+print()
+print("    Student          # Correct         % Grade")
+print("    ------------------------------------------")
+for i in range(0, len(StudNameLst)):
+    print(f"    {StudNameLst[i]:<15s}     {NumCorrectLst[i]:>2d}             {FV.FNumber1(GradeLst[i]):>5s}")
